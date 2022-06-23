@@ -173,12 +173,9 @@
                                 <div class="col-lg-9">
                                     <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
                                         <option class="form-control" value=''>Select Company</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Company 1</option>
-                                        <option value="2">Company 2</option>
-                                        <option value="3">Company 3</option>
+                                        @foreach($company as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

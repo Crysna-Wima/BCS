@@ -180,7 +180,7 @@
                                     <select class="form-control select" id="company" name="company"
                                             data-placeholder="Select a company" style="width: 100%;">
                                         @foreach ($company as $detail)
-                                        <option value="{{$detail->company_code}}">{{$detail->company_name}}</option>
+                                        <option value="{{$detail->company}}">{{ $detail->company }} - {{$detail->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -287,7 +287,7 @@
                                     <select class="form-control select" id="companyEdit" name="companyEdit"
                                             data-placeholder="Select a company" style="width: 100%;">
                                         @foreach ($company as $detail)
-                                        <option value="{{$detail->company_code}}">{{$detail->company_name}}</option>
+                                        <option value="{{$detail->company}}">{{ $detail->company }} - {{$detail->description}}</option>
                                         @endforeach
                                     </select>
                                 </div>

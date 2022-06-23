@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Companies')
+@section('title', 'Company')
 
 @section('css_page')
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +45,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Companies</h5>
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Company</h5>
                     <!--end::Actions-->
                 </div>
                 <!--end::Info-->
@@ -64,7 +64,7 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap py-3">
                         <div class="card-title">
-                            <h3 class="card-label">Data Company
+                            <h3 class="card-label">Data Company</h3>
                                 <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
                         </div>
                         <div class="card-toolbar">
@@ -96,16 +96,6 @@
                                                     </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 my-2 my-md-0">
-                                            <div class ="d-flex align-items-center">
-                                            <label class="mb-0 d-none d-md-block col-md-4">Use SAP :</label>
-                                                <select class="form-control" id="kt_datatable_search_is_sap">
-                                                    <option value="">All</option>
-                                                    <option value="1">Use</option>
-                                                    <option value="0">Not Use</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="col-md-2">
                                             <a href="#" class="btn btn-light-primary px-6 font-weight-bold">Search</a>
                                         </div>
@@ -116,7 +106,7 @@
                         <!--end::Search Form-->
                         <!--end: Search Form-->
                         <!--begin: Datatable-->
-                        <div class="datatable datatable-bordered datatable-head-custom" id="kt_datatable_menu"></div>
+                        <div class="datatable datatable-bordered datatable-head-custom " id="kt_datatable_menu"></div>
                         <!--end: Datatable-->
                     </div>
                 </div>
@@ -143,42 +133,85 @@
                     <div class="modal-body" style="height: 500px;">
                         <div class="mb-7">
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Kode:</label>
+                                <label class="col-lg-3 col-form-label">Company:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="company_code" name="company_code"
-                                           placeholder="e.g: A000"/>
-                                    <span class="form-text text-muted">Masukkan kode perusahaan</span>
+                                    <input type="text" class="form-control" id="company" name="company"
+                                           placeholder="e.g: A0001"/>
+                                    <span class="form-text text-muted">Masukkan Kode Company</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Nama:</label>
+                                <label class="col-lg-3 col-form-label">Description:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="company_name" name="company_name"
-                                           placeholder="e.g: PT Petrokimia Gresik"/>
-                                    <span class="form-text text-muted">Masukkan nama perusahaan</span>
+                                    <input type="text" class="form-control" id="description" name="description"
+                                           placeholder="e.g: PT Jaya Abadi"/>
+                                    <span class="form-text text-muted">Masukkan nama Company</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parent Company Code:</label>
+                                <label class="col-lg-3 col-form-label">Logo:</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control select2" name="parent_company_code" id="parent_company_code" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parent Company Code</option>
-                                        @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
+                                    <input type="file" id="logo" class="form-control" name="logo">
+                                    <span class="form-text text-muted">Please upload your company logo</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Parenth1:</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control select2" name="parenth1" id="parenth1" style="width: 100%;">
+                                        <option class="form-control" value=''>Select Parenth</option>
+                                        @foreach($parenth1 as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group row mt-0" style="margin-top: -20px !important">
-                                <label class="col-lg-3"></label>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Parenth2:</label>
                                 <div class="col-lg-9">
-                                    <label class="checkbox">
-                                    <input type="checkbox" value="1" id = "is_sap" name="is_sap" class="form-control">
-                                    <span></span>Use SAP</label>
+                                    <select class="form-control select2" name="parenth2" id="parenth2" style="width: 100%;">
+                                        <option class="form-control" value=''>Select Parenth2</option>
+                                        @foreach($parenth2 as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Status:</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control select2" name="status" id="status" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Status</option>
+                                        <option class="form-control" value='1'>Active</option>
+                                        <option class="form-control" value='0'>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Short Description:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="short_description" name="short_description"
+                                           placeholder="e.g: Test"/>
+                                    <span class="form-text text-muted">Masukkan Short Description</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Short Desc Inventory:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="short_desc_inventory" name="short_desc_inventory"
+                                           placeholder="e.g: Test"/>
+                                    <span class="form-text text-muted">Masukkan Short Desc Inventory</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Dirut Name:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="dirut_name" name="dirut_name"
+                                           placeholder="e.g: Test"/>
+                                    <span class="form-text text-muted">Masukkan Nama Dirut</span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="modal-footer">
@@ -186,7 +219,7 @@
                                     class="fa fa-times"></i>Cancel
                         </button>
                         @can(['company-C' , 'company-U'])
-                            <button type="submit" id="saveMenu" data-uuid="" class="btn btn-primary font-weight-bold">
+                            <button type="submit" id="saveMenu" data-id="" class="btn btn-primary font-weight-bold">
                                 <i class="fa fa-save"></i> Save changes
                             </button>
                         @endcan
@@ -222,8 +255,8 @@
                     type: 'remote',
                     source: {
                         read: {
+                            url: '/company/list',
                             method: 'GET',
-                            url: './company/list'
                         }
                     },
                     pageSize: 10,
@@ -242,54 +275,73 @@
                 },
                 // columns definition
                 columns: [
-                    {
-                        field: 'company_code',
-                        title: 'Kode',
+                    { 
+                        field: 'company',
+                        title: 'Company',
+                        width: 100,
                     }, {
-                        field: 'company_name',
-                        title: 'Nama',
+                        field: 'description',
+                        title: 'Description',
+                        width: 100,
                     }, {
-                        field: 'is_sap',
-                        title: 'Use SAP',
-                        textAlign : 'center',
-                        // template: function(r){
-                        //     var a = {
-                        //         0: {title: "Not Use", class: " label-light-danger"},
-                        //         1: {title: "Use", class: " label-light-success"}
-                        //     };
-                        //     var status = r.is_sap;
-                        //     r.status_sap =a[status].title;
-                        //     return '<span class="label font-weight-bold label-lg ' + a[status].class + ' label-inline">' + a[status].title + '</span>';
-                        // }
-                    },
-                     {
+                        field: 'logo',
+                        title: 'logo',
+                        template: function (row) {
+                            if (row.logo == null) {
+                                return '';
+                            } else {
+                                return '<img src="assets/img/logo/' + row.logo + '" width="80px" height="80px">';
+                            }
+                        },
+                    },{
+                        field: 'parenth1',
+                        title: 'Parenth1',
+                        width: 100,
+                    }, {
+                        field: 'parenth2',
+                        title: 'Parenth2',
+                        width: 100,
+                    }, {
+                        field: 'status',
+                        title: 'Status',
+                        width: 100,
+                        template: function (row) {
+                            var status = {
+                                1: {'title': 'Active', 'class': ' kt-badge--success'},
+                                0: {'title': 'Inactive', 'class': ' kt-badge--danger'},
+                            };
+                            return '<span class="kt-badge ' + status[row.status].class + ' kt-badge--inline kt-badge--pill">' + status[row.status].title + '</span>';
+                        }
+                    }, {
+                        field: 'short_description',
+                        title: 'Short Description',
+                    }, {
+                        field: 'short_desc_inventory',
+                        title: 'Short Desc Inventory',
+                    }, {
+                        field: 'dirut_name',
+                        title: 'Dirut Name',
+                    }, {
                         field: 'Actions',
                         title: 'Actions',
                         sortable: false,
-                        width: 125,
+                        width: 70,
                         autoHide: false,
                         overflow: 'visible',
                         template: function (row) {
                             return "<center>" +
                                     @can('company-U')
-                                        "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-uuid=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
+                                        "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-id=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
                                     @endcan
-                                            @can('company-D')
-                                        "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-uuid=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
+                                    @can('company-D')
+                                        "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-id=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
                                     @endcan
                                         "</center>";
                         },
                     }
                 ],
 
-
             });
-
-            $('#kt_datatable_search_is_sap').on('change', function() {
-                datatable.search($(this).val().toLowerCase(), 'is_sap');
-            });
-
-            $('#kt_datatable_search_is_sap').selectpicker();
 
             @endcan
 
@@ -302,7 +354,6 @@
                 $(`.invalid-feedback`).remove();
                 let form = document.forms.formmenus; // <form name="formmenus"> element
                 form.reset();
-                $(form.elements.parent_company_code).val('').trigger('change');
             });
 
             @endcan
@@ -311,7 +362,7 @@
             $(document).on('click', '.edits', function () {
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-                    url: './company/' + $(this).data('uuid'), // the url where we want to POST
+                    url: './company/' + $(this).data('id'), // the url where we want to POST
                     beforeSend: function () {
                         let form = document.forms.formmenus; // <form name="formmenus"> element
                         form.reset();
@@ -323,23 +374,19 @@
                     console.log(res.success);
                     if (res.success) {
                         showtoastr('success', res.message);
-                        $('#company_code').val(res.data.company_code);
-                        $('#company_name').val(res.data.company_name);
+                        $(form.elements.company).val(res.data.company);
+                        $(form.elements.description).val(res.data.description);
+                        $(form.elements.parenth1).val(res.data.parenth1).trigger('change');
+                        $(form.elements.parenth2).val(res.data.parenth2).trigger('change');
+                        $(form.elements.status).val(res.data.status).trigger('change');
+                        $(form.elements.short_description).val(res.data.short_description);
+                        $(form.elements.short_desc_inventory).val(res.data.short_desc_inventory);
+                        $(form.elements.dirut_name).val(res.data.dirut_name);
+                        // $('#').val(res.data.company_code);
+                        // $('#company_name').val(res.data.company_name);
                         // var index = $('#parent_company_code').get(res.data.company_code).selectedIndex;
                         // $('#parent_company_code option:eq(' + index + ')').remove();
-                        $("#parent_company_code option[value='"+res.data.company_code+"']").prop("disabled", true);
-                         
-                        $('#parent_company_code').val(res.data.parent_company_code).trigger('change');
-                        if (res.data.is_sap == 1) {
-                            $("#is_sap").attr("checked", true);
-                        }else{
-                            $("#is_sap").attr("checked", false);
-                        }
-                        
-                        $("#saveMenu").data("uuid", res.data.id);
-                        $('#modalMenu').on('hidden.bs.modal', function () {
-                            $("#parent_company_code option[value='"+res.data.company_code+"']").prop("disabled", false);
-                        });
+                        $("#saveMenu").data( "id", res.data.id);
                     }
                 }).fail(function (data) {
                     show_toastr('error', data.responseJSON.status, data.responseJSON.message);
@@ -360,14 +407,14 @@
                 var formData = new FormData($("#formmenus")[0]);
                 // var formData = $('#formmenus').serializeArray(); // our data object
                 var method = "POST";
-                let menuID = $("#saveMenu").data("uuid");
+                let menuID = $("#saveMenu").data("id");
                 
                 if (typeof menuID == "undefined" || menuID == "") {
                     var url = `./company`;
                 } else {
                     var url = `./company/${menuID}/update`;
                 }
-                //var url = (menuID != "" || menuID != undefined) ? `./company/${menuID}/update` : `./company`;
+                // var url = (menuID != "" || menuID != undefined) ? `./costcenter${menuID}/update` : `./costcenter`;
 
                 $.ajax({
                     type: method, // define the type of HTTP verb we want to use (POST for our form)
@@ -384,7 +431,7 @@
                 }).done(function (data) {
                     $("#modalMenu").modal('hide');
                     showtoastr('success', data.message);
-                    $("#saveMenu").data("uuid", "");
+                    $("#saveMenu").data("id", "");
                     $("#formmenus")[0].reset();
                     menuID = "";
                     let form = document.forms.formmenus; // <form name="formmenus"> element
@@ -422,7 +469,7 @@
                 {
                     $.ajax({
                         type: 'DELETE', // define the type of HTTP verb we want to use (POST for our form)
-                        url: './company/' + $(this).data('uuid'), // the url where we want to POST
+                        url: './company/' + $(this).data('id'), // the url where we want to POST
                     })
                         .done(function (data) {
                             showtoastr('success', data.message);
