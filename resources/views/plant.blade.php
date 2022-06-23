@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'CostCenter Structure')
+@section('title', 'Plant')
 
 @section('css_page')
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +45,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Costcenter Structure</h5>
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Plant</h5>
                     <!--end::Actions-->
                 </div>
                 <!--end::Info-->
@@ -64,7 +64,7 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap py-3">
                         <div class="card-title">
-                            <h3 class="card-label">Data Costcenter Structure</h3>
+                            <h3 class="card-label">Plant</h3>
                                 <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
                         </div>
                         <div class="card-toolbar">
@@ -123,7 +123,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalMenuTitle">Create Costcenter Structure</h5>
+                    <h5 class="modal-title" id="modalMenuTitle">Create Master Plant</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -132,7 +132,7 @@
                 <form role="form" class="form" name="formmenus" id="formmenus" enctype="multipart/formdata" method="">
                     <div class="modal-body" style="height: 500px;">
                         <div class="mb-7">
-                            <div class="form-group row">
+                            {{-- <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Directorat:</label>
                                 <div class="col-lg-9">
                                     <select class="form-control select2" name="directorat" id="directorat" style="width: 100%;" required>
@@ -140,45 +140,87 @@
                                         {{-- @foreach($parent_company_code as $code)
                                                 <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
                                         @endforeach --}}
-                                        <option value="1">Directorat 1</option>
+                                        {{-- <option value="1">Directorat 1</option>
                                         <option value="2">Directorat 2</option>
                                         <option value="3">Directorat 3</option>
                                     </select>
                                 </div>
+                            </div> --}}
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Plant:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="plant" name="plant"
+                                        placeholder="e.g: Plant 1 Gresik"/>
+                                    <span class="form-text text-muted">Masukkan nama Plant</span>
+                                </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Departement:</label>
+                                <label class="col-lg-3 col-form-label">Description:</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control select2" name="departement" id="departement" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Departement</option>
+                                    <input type="text" class="form-control" id="description" name="description"/>
+                                    <span class="form-text text-muted">Masukkan Description</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Category:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="category" name="category"/>
+                                    <span class="form-text text-muted">Masukkan Category</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Type:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="type" name="type"/>
+                                    <span class="form-text text-muted">Masukkan Type</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Parenth1:</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control select2" name="parenth1" id="parenth1" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Parenth1</option>
                                         {{-- @foreach($parent_company_code as $code)
                                                 <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
                                         @endforeach --}}
-                                        <option value="1">Departement 1</option>
-                                        <option value="2">Departement 2</option>
-                                        <option value="3">Departement 3</option>
+                                        <option value="1">Parenth 1</option>
+                                        <option value="2">Parenth 2</option>
+                                        <option value="3">Parenth 3</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">PIC:</label>
+                                <label class="col-lg-3 col-form-label">CC1:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="pic" name="pic"
-                                        placeholder="e.g: Joko Wuyono"/>
-                                    <span class="form-text text-muted">Masukkan nama pic</span>
+                                    <input type="text" class="form-control" id="cc1" name="cc1"/>
+                                    <span class="form-text text-muted">Masukkan CC1</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Company:</label>
+                                <label class="col-lg-3 col-form-label">CostCenter:</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Company</option>
+                                    <input type="text" class="form-control" id="costcenter" name="costcenter"/>
+                                    <span class="form-text text-muted">Masukkan CostCenter</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Sender Bag:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="senderbag" name="senderbag"/>
+                                    <span class="form-text text-muted">Masukkan Sender Bag</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Parenth2:</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control select2" name="parenth2" id="parenth2" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Parenth2</option>
                                         {{-- @foreach($parent_company_code as $code)
                                                 <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
                                         @endforeach --}}
-                                        <option value="1">Company 1</option>
-                                        <option value="2">Company 2</option>
-                                        <option value="3">Company 3</option>
+                                        <option value="1">Parenth 1</option>
+                                        <option value="2">Parenth 2</option>
+                                        <option value="3">Parenth 3</option>
                                     </select>
                                 </div>
                             </div>
@@ -196,36 +238,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">KADIR:</label>
+                                <label class="col-lg-3 col-form-label">CC2:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="kadir" name="kadir"
-                                           placeholder="e.g: Joko Wuyono"/>
-                                    <span class="form-text text-muted">Masukkan nama kadir</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Unit Kerja:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="unit_kerja" id="unit_kerja" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Unit Kerja</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Unit Kerja 1</option>
-                                        <option value="2">Unit Kerja 2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Year:</label>
-                                <div class="col-lg-9">
-                                    <input type="number" class="form-control" id="year" name="year"
-                                        placeholder="e.g: 2022"/>
-                                    <span class="form-text text-muted">Masukkan Tahun</span>
+                                    <input type="text" class="form-control" id="cc2" name="cc2"/>
+                                    <span class="form-text text-muted">Masukkan CC2</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>  
+                            
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
@@ -260,7 +281,7 @@
 
             var datatable = $('#kt_datatable_menu');
 
-            @can('costcenter-R')
+            @can('plant-R')
 
             datatable.KTDatatable({
                 // datasource definition
@@ -268,7 +289,7 @@
                     type: 'remote',
                     source: {
                         read: {
-                            url: '/costcenter/list',
+                            url: '/plant/list',
                             method: 'GET',
                         }
                     },
@@ -287,79 +308,52 @@
                     key: 'generalSearch'
                 },
                 // columns definition
-                columns: [{
-                        field: 'directorat',
-                        title: 'Nama Directorat',
-                        template: function(r){
-                            var a = {
-                                '1': 'Directorat 1',
-                                '2': 'Directorat 2',
-                                '3': 'Directorat 3',
-                            };
-                            return a[r.directorat];
+                columns: [
+                        {
+                        field: 'plant',
+                        title: 'Plant',
+                        }, 
+                        {
+                        field: 'description',
+                        title: 'Description',
+                        }, 
+                        {
+                        field: 'category',
+                        title: 'Category',
                         },
-                    }, {
-                        field: 'departement',
-                        title: 'Nama Departement',
-                        template: function(r){
-                            var a = {
-                                '1': 'Departement 1',
-                                '2': 'Departement 2',
-                                '3': 'Departement 3',
-                            };
-                            return a[r.departement];
+                        {
+                        field: 'type',
+                        title: 'Type',
                         },
-                    }, {
-                        field: 'pic',
-                        title: 'Nama PIC',
-                    }, {
-                        field: 'company',
-                        title: 'Nama Company',
-                        template: function(r){
-                            var a = {
-                                '1': 'Company 1',
-                                '2': 'Company 2',
-                                '3': 'Company 3',
-                            };
-                            return a[r.company];
+                        {
+                        field: 'parenth1',
+                        title: 'Parenth 1',
                         },
-                    }, {
+                        {
+                        field: 'cc1',
+                        title: 'CC1',
+                        },
+                        {
+                        field: 'costcenter',
+                        title: 'Cost Center',
+                        },
+                        {
+                        field: 'sender_bag',
+                        title: 'Sender Bag',
+                        },
+                        {
+                        field: 'parenth2',
+                        title: 'Parenth 2',
+                        },
+                        {
                         field: 'status',
-                        title: 'Status',  
-                        textAlign : 'center',
-                        template: function(r){
-                            var a = {
-                                1: {title: "Active", class: " label-light-success"},
-                                2: {title: "Inactive", class: " label-light-danger"}
-                            };
-                            var status1 = r.status;
-                            r.status_status =a[status1].title ;
-                            return '<span class="label font-weight-bold label-lg ' + a[status1].class + ' label-inline">' + a[status1].title + '</span>';
+                        title: 'Status',
                         },
-                    }, {
-                        field: 'kadir',
-                        title: 'Nama Kadir',
-                    }, {
-                        field: 'unit_kerja',
-                        title: 'Unit Kerja',
-                        width: 70,
-                        template: function(r){
-                            var a = {
-                                '1': 'Unit Kerja 1',
-                                '2': 'Unit Kerja 2',
-                            };
-                            return a[r.unit_kerja];
+                        {
+                        field: 'cc2',
+                        title: 'CC2',
                         },
-                    }, { 
-                        field: 'year',
-                        title: 'Tahun',
-                    }, {
-                        field: 'created_by',
-                        title: 'Created By',
-                    }, {
-                        field: 'updated_by',
-                        title: 'Updated By',
-                    }, {
+                        {
                         field: 'Actions',
                         title: 'Actions',
                         sortable: false,
@@ -368,10 +362,10 @@
                         overflow: 'visible',
                         template: function (row) {
                             return "<center>" +
-                                    @can('costcenter-U')
+                                    @can('plant-U')
                                         "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-id=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
                                     @endcan
-                                    @can('costcenter-D')
+                                    @can('plant-D')
                                         "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-id=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
                                     @endcan
                                         "</center>";
@@ -383,10 +377,10 @@
 
             @endcan
 
-            @can('costcenter-C')
+            @can('plant-C')
             $(document).on('click', '#addMenu', function () {
                 $("#saveMenu").data("id", "");
-                $('#modalMenuTitle').text('Create Costcenter Structure');
+                $('#modalMenuTitle').text('Create Plant');
                 $('#modalMenu').modal('show');
                 $(`.form-control`).removeClass('is-invalid');
                 $(`.invalid-feedback`).remove();
@@ -396,11 +390,11 @@
 
             @endcan
 
-            @can('costcenter-U')
+            @can('plant-U')
             $(document).on('click', '.edits', function () {
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-                    url: './costcenter/' + $(this).data('id'), // the url where we want to POST
+                    url: './plant/' + $(this).data('id'), // the url where we want to POST
                     beforeSend: function () {
                         let form = document.forms.formmenus; // <form name="formmenus"> element
                         form.reset();
@@ -412,14 +406,17 @@
                     console.log(res.success);
                     if (res.success) {
                         showtoastr('success', res.message);
-                        $(form.elements.directorat).val(res.data.directorat).trigger('change');
-                        $(form.elements.departement).val(res.data.departement).trigger('change');
-                        $(form.elements.pic).val(res.data.pic);
-                        $(form.elements.company).val(res.data.company).trigger('change');
-                        $(form.elements.status).val(res.data.status).trigger('change');
-                        $(form.elements.kadir).val(res.data.kadir);
-                        $(form.elements.unit_kerja).val(res.data.unit_kerja).trigger('change');
-                        $(form.elements.year).val(res.data.year);
+                        $(form.elements.plant).val(res.data.plant).trigger('change');
+                        $(form.elements.description).val(res.data.description).trigger('change');
+                        $(form.elements.category).val(res.data.category);
+                        $(form.elements.type).val(res.data.type).trigger('change');
+                        $(form.elements.parenth1).val(res.data.parenth1).trigger('change');
+                        $(form.elements.cc1).val(res.data.cc1);
+                        $(form.elements.costcenter).val(res.data.costcenter).trigger('change');
+                        $(form.elements.senderbag).val(res.data.sender_bag);
+                        $(form.elements.parenth2).val(res.data.parenth2);
+                        $(form.elements.status).val(res.data.status);
+                        $(form.elements.cc2).val(res.data.cc2);
                         // $('#').val(res.data.company_code);
                         // $('#company_name').val(res.data.company_name);
                         // var index = $('#parent_company_code').get(res.data.company_code).selectedIndex;
@@ -432,14 +429,14 @@
                         show_toastr('error', index, value);
                     });
                 }).always(function () {
-                    $('#modalMenuTitle').text('Edit Data Costcenter Structure');
+                    $('#modalMenuTitle').text('Edit Data Plant');
                     $('#modalMenu').modal('show');
                 });
             });
 
             @endcan
 
-            @can(['costcenter-C', 'costcenter-U'])
+            @can(['plant-C', 'plant-U'])
             $('#formmenus').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData($("#formmenus")[0]);
@@ -448,9 +445,9 @@
                 let menuID = $("#saveMenu").data("id");
                 
                 if (typeof menuID == "undefined" || menuID == "") {
-                    var url = `./costcenter`;
+                    var url = `./plant`;
                 } else {
-                    var url = `./costcenter/${menuID}/update`;
+                    var url = `./plant/${menuID}/update`;
                 }
                 // var url = (menuID != "" || menuID != undefined) ? `./costcenter${menuID}/update` : `./costcenter`;
 
@@ -507,7 +504,7 @@
                 {
                     $.ajax({
                         type: 'DELETE', // define the type of HTTP verb we want to use (POST for our form)
-                        url: './costcenter/' + $(this).data('id'), // the url where we want to POST
+                        url: './plant/' + $(this).data('id'), // the url where we want to POST
                     })
                         .done(function (data) {
                             showtoastr('success', data.message);
