@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CostcenterStructureRequest;
 use App\Models\CostcenterStructure;
+use App\Models\Company;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -18,6 +19,7 @@ class CostcenterStructureController extends Controller
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
+        $data['company'] = Company::select('id', 'company', 'description')->get();
         return view('costcenterStructure', $data);
     }
 

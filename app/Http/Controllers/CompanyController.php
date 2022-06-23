@@ -9,23 +9,20 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        // $parent_company_code = $query->getCompanyParentID()->get();
-        // $data['parent_company_code']=json_decode($parent_company_code, true);
-        $data['parent_company_code']=Company::select('company_code', 'company_name')->get();
+        $parenth1 = Company::whereNull('parenth1')->get();
+        $parenth2 = Company::whereNotNull('parenth1')->whereNull('parenth2')->get();
+        $data['parenth1'] = $parenth1;
+        $data['parenth2'] = $parenth2;
+
         return view('company', $data);
     }
 
@@ -43,13 +40,24 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompanyRequest $request)
+    public function store(Request $request)
     {
+        if ($request->file('logo')) {
+            $file= $request->file('logo');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('assets/img/logo'), $filename);
+        }
+
         $company = Company::create([
-            'company_name' => $request->company_name,
-            'company_code' => $request->company_code,  
-            'parent_company_code' => $request->parent_company_code,
-            'is_sap' => ($request->is_sap == null) ? '0' : $request->is_sap,
+            'company' => $request->company,
+            'description' => $request->description,
+            'parenth1' => $request->parenth1,
+            'parenth2' => $request->parenth2,
+            'status' => $request->status,
+            'short_description' => $request->short_description,
+            'short_desc_inventory' => $request->short_desc_inventory,
+            'dirut_name' => $request->dirut_name,
+            'logo' => $filename,
         ]);
 
         $response = responseSuccess(trans('message.read-success'),$company);
@@ -94,15 +102,25 @@ class CompanyController extends Controller
     public function update($id, CompanyRequest $request)
     {
           $data = $this->findDataWhere(Company::class, ['id' => $id]);
+            if ($request->file('logo')) {
+                $file= $request->file('logo');
+                $filename= date('YmdHi').$file->getClientOriginalName();
+                $file-> move(public_path('assets/img/logo'), $filename);
+            }
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-                  'company_name' => $request->company_name,
-                  'company_code' => $request->company_code,
-                  'parent_company_code' => $request->parent_company_code,
-                  'is_sap' => ($request->is_sap == null) ? '0' : $request->is_sap, 
+                    'company' => $request->company,
+                    'description' => $request->description,
+                    'parenth1' => $request->parenth1,
+                    'parenth2' => $request->parenth2,
+                    'status' => $request->status,
+                    'short_description' => $request->short_description,
+                    'short_desc_inventory' => $request->short_desc_inventory,
+                    'dirut_name' => $request->dirut_name,
+                    'logo' => $filename,
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
