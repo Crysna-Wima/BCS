@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'GL Account')
+@section('title', 'Role Capex')
 
 @section('css_page')
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +45,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Gl Account</h5>
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Role Capex</h5>
                     <!--end::Actions-->
                 </div>
                 <!--end::Info-->
@@ -64,12 +64,12 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap py-3">
                         <div class="card-title">
-                            <h3 class="card-label">Data GL Account</h3>
+                            <h3 class="card-label">Data Role Capex</h3>
                                 <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            @can('glaccount-C')
+                            @can('roleCapex-C')
                                 <button id="addMenu" name="addMenu" class="btn btn-primary font-weight-bolder">
                                     <span class="svg-icon svg-icon-md">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
@@ -90,7 +90,7 @@
                                         <div class="col-md-4 my-2 my-md-0">
                                             <div class="input-icon">
                                                 <input type="text" class="form-control" placeholder="Search..."
-                                                       id="kt_datatable_search_query"/>
+                                                    id="kt_datatable_search_query"/>
                                                 <span>
                                                         <i class="flaticon2-search-1 text-muted"></i>
                                                     </span>
@@ -123,7 +123,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalMenuTitle">Create GL Account</h5>
+                    <h5 class="modal-title" id="modalMenuTitle">Create Role Capex</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -133,89 +133,56 @@
                     <div class="modal-body" style="height: 500px;">
                         <div class="mb-7">
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">GL Account:</label>
+                                <label class="col-lg-3 col-form-label">No Pegawai:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="gl_account" name="gl_account"
-                                           placeholder="e.g: 11134567"/>
-                                    <span class="form-text text-muted">Masukkan Gl Account</span>
+                                    <input type="number" class="form-control" id="nopeg" name="nopeg"
+                                           placeholder="e.g: 123456789"/>
+                                    <span class="form-text text-muted">Masukkan No Pegawai</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Description:</label>
+                                <label class="col-lg-3 col-form-label">Acc:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="description" name="description"
-                                           placeholder="e.g: PIUTANG CEK"/>
-                                    <span class="form-text text-muted">Masukkan Description</span>
+                                    <input type="text" class="form-control" id="acc" name="acc"
+                                           placeholder="e.g: test"/>
+                                    <span class="form-text text-muted">Masukkan Acc</span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Account Type:</label>
+                                <label class="col-lg-3 col-form-label">Company:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="account_type" name="account_type"
-                                           placeholder="e.g: AST"/>
-                                    <span class="form-text text-muted">Masukkan Account Type</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth 1:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth1" id="parenth1" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth 1</option>
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
+                                    <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Company</option>
+                                        @foreach($company as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth 2:</label>
+                                <label class="col-lg-3 col-form-label">KA:</label>
                                 <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth2" id="parenth2" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth 2</option>
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth 3:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth3" id="parenth3" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth 3</option>
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth 4:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth4" id="parenth4" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth 4</option>
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="ka" name="ka"
+                                        placeholder="e.g: Test"/>
+                                    <span class="form-text text-muted">Masukkan KA</span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Status:</label>
                                 <div class="col-lg-9">
                                     <select class="form-control select2" name="status" id="status" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Unit Kerja</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
+                                        <option class="form-control" value=''>Select Status</option>
+                                        <option class="form-control" value='1'>Active</option>
+                                        <option class="form-control" value='0'>Inactive</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Costcenter Allocation:</label>
+                                <label class="col-lg-3 col-form-label">Year:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="costcenter_allocation" name="costcenter_allocation"
-                                           placeholder="e.g: costcenter allocation"/>
-                                    <span class="form-text text-muted">Masukkan Costcenter Allocation</span>
+                                    <input type="number" class="form-control" id="year" name="year"
+                                        placeholder="e.g: 2022"/>
+                                    <span class="form-text text-muted">Masukkan Tahun</span>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +192,7 @@
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
                                     class="fa fa-times"></i>Cancel
                         </button>
-                        @can(['glaccount-C' , 'glaccount-U'])
+                        @can(['roleCapex-C' , 'roleCapex-U'])
                             <button type="submit" id="saveMenu" data-id="" class="btn btn-primary font-weight-bold">
                                 <i class="fa fa-save"></i> Save changes
                             </button>
@@ -254,7 +221,7 @@
 
             var datatable = $('#kt_datatable_menu');
 
-            @can('glaccount-R')
+            @can('roleCapex-R')
 
             datatable.KTDatatable({
                 // datasource definition
@@ -262,7 +229,7 @@
                     type: 'remote',
                     source: {
                         read: {
-                            url: '/glaccount/list',
+                            url: '/rolecapex/list',
                             method: 'GET',
                         }
                     },
@@ -282,78 +249,34 @@
                 },
                 // columns definition
                 columns: [{
-                        field: 'gl_account',
-                        title: 'GL Account',
+                        field: 'nopeg',
+                        title: 'No Pegawai',
                     }, {
-                        field: 'description',
-                        title: 'Deskripsi',
+                        field: 'acc',
+                        title: 'Acc',
                     }, {
-                        field: 'account_type',
-                        title: 'Account Type',
-                    }, {
-                        field: 'parenth1',
-                        title: 'Parenth 1',
-                        tempalate: function(r){
-                            if(r.parenth1 == 1){
-                                return 'Parenth 1';
-                            }else if(r.parenth1 == 2){
-                                return 'Parenth 2';
-                            }else if(r.parenth1 == 3){
-                                return 'Parenth 3';
-                            }
+                        field: 'company',
+                        title: 'Nama Company',
+                        template: function (row) {
+                            return row.company;
                         }
                     }, {
-                        field: 'parenth2',
-                        title: 'Parenth 2',
-                        tempalate: function(r){
-                            if(r.parenth2 == 1){
-                                return 'Parenth 1';
-                            }else if(r.parenth2 == 2){
-                                return 'Parenth 2';
-                            }else if(r.parenth2 == 3){
-                                return 'Parenth 3';
-                            }
-                        }
+                        field: 'ka',
+                        title: 'KA',
                     }, {
-                        field: 'parenth3',
-                        title: 'Parenth 3',
-                        tempalate: function(r){
-                            if(r.parenth3 == 1){
-                                return 'Parenth 1';
-                            }else if(r.parenth3 == 2){
-                                return 'Parenth 2';
-                            }else if(r.parenth3 == 3){
-                                return 'Parenth 3';
-                            }
-                        }
-                    }, {
-                        field: 'parenth4',
-                        title: 'Parenth 4',
-                        tempalate: function(r){
-                            if(r.parenth4 == 1){
-                                return 'Parenth 1';
-                            }else if(r.parenth4 == 2){
-                                return 'Parenth 2';
-                            }else if(r.parenth4 == 3){
-                                return 'Parenth 3';
-                            }
-                        }
+                        field: 'year',
+                        title: 'year',
                     }, {
                         field: 'status',
                         title: 'Status',  
                         textAlign : 'center',
-                        template: function(r){
-                            var a = {
-                                1: {title: "Active", class: " label-light-success"},
-                                0: {title: "Inactive", class: " label-light-danger"}
-                            };
-                            var status1 = r.status;
-                            r.status_status =a[status1].title ;
-                            return '<span class="label font-weight-bold label-lg ' + a[status1].class + ' label-inline">' + a[status1].title + '</span>';
-                        },
-                    }, {
-                        field: 'costcenter_allocation',
-                        title: 'Costcenter Allocation',
+                        template: function (row) {
+                            if (row.status == 1) {
+                                return '<span class="badge badge-success">Active</span>';
+                            } else {
+                                return '<span class="badge badge-danger">Inactive</span>';
+                            }
+                        }
                     }, {
                         field: 'Actions',
                         title: 'Actions',
@@ -363,10 +286,10 @@
                         overflow: 'visible',
                         template: function (row) {
                             return "<center>" +
-                                    @can('glaccount-U')
+                                    @can('roleCapex-U')
                                         "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-id=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
                                     @endcan
-                                    @can('glaccount-D')
+                                    @can('roleCapex-D')
                                         "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-id=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
                                     @endcan
                                         "</center>";
@@ -378,10 +301,10 @@
 
             @endcan
 
-            @can('glaccount-C')
+            @can('roleCapex-C')
             $(document).on('click', '#addMenu', function () {
                 $("#saveMenu").data("id", "");
-                $('#modalMenuTitle').text('Create GL Account');
+                $('#modalMenuTitle').text('Create Costcenter Structure');
                 $('#modalMenu').modal('show');
                 $(`.form-control`).removeClass('is-invalid');
                 $(`.invalid-feedback`).remove();
@@ -391,11 +314,11 @@
 
             @endcan
 
-            @can('glaccount-U')
+            @can('roleCapex-U')
             $(document).on('click', '.edits', function () {
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-                    url: './glaccount/' + $(this).data('id'), // the url where we want to POST
+                    url: './rolecapex/' + $(this).data('id'), // the url where we want to POST
                     beforeSend: function () {
                         let form = document.forms.formmenus; // <form name="formmenus"> element
                         form.reset();
@@ -407,15 +330,12 @@
                     console.log(res.success);
                     if (res.success) {
                         showtoastr('success', res.message);
-                        $(form.elements.gl_account).val(res.data.gl_account);
-                        $(form.elements.description).val(res.data.description);
-                        $(form.elements.account_type).val(res.data.account_type);
-                        $(form.elements.parenth1).val(res.data.parenth1).trigger('change');
-                        $(form.elements.parenth2).val(res.data.parenth2).trigger('change');
-                        $(form.elements.parenth3).val(res.data.parenth3).trigger('change');
-                        $(form.elements.parenth4).val(res.data.parenth4).trigger('change');
+                        $(form.elements.nopeg).val(res.data.nopeg);
+                        $(form.elements.acc).val(res.data.acc);
+                        $(form.elements.company).val(res.data.company).trigger('change');
+                        $(form.elements.ka).val(res.data.ka);
+                        $(form.elements.year).val(res.data.year);
                         $(form.elements.status).val(res.data.status).trigger('change');
-                        $(form.elements.costcenter_allocation).val(res.data.costcenter_allocation);
                         // $('#').val(res.data.company_code);
                         // $('#company_name').val(res.data.company_name);
                         // var index = $('#parent_company_code').get(res.data.company_code).selectedIndex;
@@ -428,14 +348,14 @@
                         show_toastr('error', index, value);
                     });
                 }).always(function () {
-                    $('#modalMenuTitle').text('Edit Data Costcenter Structure');
+                    $('#modalMenuTitle').text('Edit Data Role Capex');
                     $('#modalMenu').modal('show');
                 });
             });
 
             @endcan
 
-            @can(['glaccount-C', 'glaccount-U'])
+            @can(['roleCapex-C', 'roleCapex-U'])
             $('#formmenus').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData($("#formmenus")[0]);
@@ -444,9 +364,9 @@
                 let menuID = $("#saveMenu").data("id");
                 
                 if (typeof menuID == "undefined" || menuID == "") {
-                    var url = `./glaccount`;
+                    var url = `./rolecapex`;
                 } else {
-                    var url = `./glaccount/${menuID}/update`;
+                    var url = `./rolecapex/${menuID}/update`;
                 }
                 // var url = (menuID != "" || menuID != undefined) ? `./costcenter${menuID}/update` : `./costcenter`;
 
@@ -486,7 +406,7 @@
             });
             @endcan
 
-            @can('glaccount-D')
+            @can('roleCapex-D')
             $(document).on('click', '.deletes', function () {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -503,7 +423,7 @@
                 {
                     $.ajax({
                         type: 'DELETE', // define the type of HTTP verb we want to use (POST for our form)
-                        url: './glaccount/' + $(this).data('id'), // the url where we want to POST
+                        url: './rolecapex/' + $(this).data('id'), // the url where we want to POST
                     })
                         .done(function (data) {
                             showtoastr('success', data.message);

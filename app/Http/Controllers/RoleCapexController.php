@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PlantRequest;
-use App\Models\Plant;
+use App\Http\Requests\RoleCapexRequest;
+use App\Models\RoleCapex;
+use App\Models\Company;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -11,81 +12,95 @@ use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class PlantController extends Controller
+class RoleCapexController extends Controller
 {
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        return view('plant', $data);
+        $data['company'] = Company::select('id', 'company', 'description')->get();
+        return view('roleCapex', $data);
     }
-    
+
     public function datatables(Request $request)
     {
-        $query    = Plant::get();
+        $query    = RoleCapex::get();
         $data     = DataTables::of($query)->make(true);
         $response = $data->getData(true);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
     }
-    
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $plant = Plant::create([
-            'plant' => $request->plant,
-            'description' => $request->description,
-            'category' => $request->category,
-            'type' => $request->type,
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'cc1' => $request->cc1,
-            'costcenter' => $request->costcenter,
-            'sender_bag' => $request->senderbag,
-            'parenth2' => $request->parenth2,
+        $costcenter = RoleCapex::create([
+            'nopeg' => $request->nopeg,
+            'acc' => $request->acc,
+            'company' => $request->company,
+            'ka' => $request->ka,
+            'year' => $request->year,
             'status' => $request->status,
-            'cc2' => $request->cc2,
         ]);
 
-        $response = responseSuccess(trans('message.read-success'),$plant);
+        $response = responseSuccess(trans('message.read-success'),$costcenter);
         return response()->json($response,200);
     }
-    
-    public function show($plant)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($roleCapex)
     {
 
-        $query   = Plant::find($plant);
+        $query   = RoleCapex::find($roleCapex);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
-    
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        $query   = Plant::find($id);
+        $query   = RoleCapex::find($id);
         $response = responseSuccess(trans("messages.read-success"), $query);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
         //
     }
-    
-    public function update($id, PlantRequest $request)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id, RoleCapexRequest $request)
     {
-          $data = $this->findDataWhere(Plant::class, ['id' => $id]);
+          $data = $this->findDataWhere(RoleCapex::class, ['id' => $id]);
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-                    'plant' => $request->plant,
-                    'description' => $request->description,
-                    'category' => $request->category,
-                    'type' => $request->type,
-                    'parenth1' => $request->parenth1,
-                    'cc1' => $request->cc1,
-                    'costcenter' => $request->costcenter,
-                    'sender_bag' => $request->senderbag,
-                    'parenth2' => $request->parenth2,
+                    'nopeg' => $request->nopeg,
+                    'acc' => $request->acc,
+                    'company' => $request->company,
+                    'ka' => $request->ka,
                     'status' => $request->status,
-                    'cc2' => $request->cc2,
+                    'year' => $request->year,
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
@@ -98,10 +113,11 @@ class PlantController extends Controller
 
     }
 
+
     public function destroy($id)
     {
 
-        Plant::destroy($id);
+        RoleCapex::destroy($id);
         $response = responseSuccess(trans('message.delete-success'));
         return response()->json($response,200);
     }
