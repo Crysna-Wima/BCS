@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KoorBudgetRequest;
 use App\Models\KoorBudget;
 use App\Models\Company;
+use App\Models\CostcenterStructure;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -19,6 +20,7 @@ class KoorBudgetController extends Controller
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
+        $data['costcenter'] = CostcenterStructure::select('id', 'directorat')->get();
         $data['company'] = Company::select('id', 'company', 'description')->get();
         return view('KoorBudget', $data);
     }
@@ -65,7 +67,7 @@ class KoorBudgetController extends Controller
     public function show($koorbudget)
     {
 
-        $query   = ProjectProfile::find($koorbudget);
+        $query   = KoorBudget::find($koorbudget);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
@@ -91,7 +93,7 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, KoorBudgetRequest $request)
+    public function update($id, Request $request)
     {
           $data = $this->findDataWhere(KoorBudget::class, ['id' => $id]);
 

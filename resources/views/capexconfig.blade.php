@@ -162,9 +162,12 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Company:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="company" name="company"
-                                        placeholder="e.g: Plant 1 Gresik"/>
-                                    <span class="form-text text-muted">Masukkan nama Company</span>
+                                    <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Company</option>
+                                        @foreach($company as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -188,6 +191,7 @@
                                     <span class="form-text text-muted">Masukkan Type</span>
                                 </div>
                             </div>
+                        </div>
                             
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
@@ -325,17 +329,12 @@
                     console.log(res.success);
                     if (res.success) {
                         showtoastr('success', res.message);
-                        $(form.elements.plant).val(res.data.plant).trigger('change');
                         $(form.elements.description).val(res.data.description).trigger('change');
                         $(form.elements.category).val(res.data.category);
-                        $(form.elements.type).val(res.data.type).trigger('change');
-                        $(form.elements.parenth1).val(res.data.parenth1).trigger('change');
-                        $(form.elements.cc1).val(res.data.cc1);
-                        $(form.elements.costcenter).val(res.data.costcenter).trigger('change');
-                        $(form.elements.senderbag).val(res.data.sender_bag);
-                        $(form.elements.parenth2).val(res.data.parenth2);
-                        $(form.elements.status).val(res.data.status);
-                        $(form.elements.cc2).val(res.data.cc2);
+                        $(form.elements.status).val(res.data.status).trigger('change');
+                        $(form.elements.company).val(res.data.company).trigger('change');
+                        $(form.elements.year).val(res.data.year);
+                        $(form.elements.type).val(res.data.type);
                         // $('#').val(res.data.company_code);
                         // $('#company_name').val(res.data.company_name);
                         // var index = $('#parent_company_code').get(res.data.company_code).selectedIndex;
