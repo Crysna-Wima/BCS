@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Plant')
+@section('title', 'Capex Config')
 
 @section('css_page')
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +45,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Plant</h5>
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Capex Config</h5>
                     <!--end::Actions-->
                 </div>
                 <!--end::Info-->
@@ -64,12 +64,12 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap py-3">
                         <div class="card-title">
-                            <h3 class="card-label">Plant</h3>
+                            <h3 class="card-label">Capex Confgi</h3>
                                 <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            @can('costcenter-C')
+                            @can('capexconfig-C')
                                 <button id="addMenu" name="addMenu" class="btn btn-primary font-weight-bolder">
                                     <span class="svg-icon svg-icon-md">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
@@ -123,7 +123,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalMenuTitle">Create Master Plant</h5>
+                    <h5 class="modal-title" id="modalMenuTitle">Create Capex Config</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -147,84 +147,6 @@
                                 </div>
                             </div> --}}
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Plant:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="plant" name="plant"
-                                        placeholder="e.g: Plant 1 Gresik"/>
-                                    <span class="form-text text-muted">Masukkan nama Plant</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Description:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="description" name="description"/>
-                                    <span class="form-text text-muted">Masukkan Description</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Category:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="category" name="category"/>
-                                    <span class="form-text text-muted">Masukkan Category</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Type:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="type" name="type"/>
-                                    <span class="form-text text-muted">Masukkan Type</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth1:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth1" id="parenth1" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth1</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CC1:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="cc1" name="cc1"/>
-                                    <span class="form-text text-muted">Masukkan CC1</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CostCenter:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="costcenter" name="costcenter"/>
-                                    <span class="form-text text-muted">Masukkan CostCenter</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Sender Bag:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="senderbag" name="senderbag"/>
-                                    <span class="form-text text-muted">Masukkan Sender Bag</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth2:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth2" id="parenth2" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth2</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Status:</label>
                                 <div class="col-lg-9">
                                     <select class="form-control select2" name="status" id="status" style="width: 100%;" required>
@@ -238,20 +160,40 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CC2:</label>
+                                <label class="col-lg-3 col-form-label">Company:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="cc2" name="cc2"/>
-                                    <span class="form-text text-muted">Masukkan CC2</span>
+                                    <input type="text" class="form-control" id="company" name="company"
+                                        placeholder="e.g: Plant 1 Gresik"/>
+                                    <span class="form-text text-muted">Masukkan nama Company</span>
                                 </div>
                             </div>
-                          
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Description:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="description" name="description"/>
+                                    <span class="form-text text-muted">Masukkan Description</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Year:</label>
+                                <div class="col-lg-9">
+                                    <input type="year" class="form-control" id="year" name="year"/>
+                                    <span class="form-text text-muted">Masukkan Year</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Type:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="type" name="type"/>
+                                    <span class="form-text text-muted">Masukkan Type</span>
+                                </div>
+                            </div>
                             
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
                                     class="fa fa-times"></i>Cancel
                         </button>
-                        @can(['costcenter-C' , 'costcenter-U'])
+                        @can(['capexconfig-C' , 'capexconfig-U'])
                             <button type="submit" id="saveMenu" data-id="" class="btn btn-primary font-weight-bold">
                                 <i class="fa fa-save"></i> Save changes
                             </button>
@@ -280,7 +222,7 @@
 
             var datatable = $('#kt_datatable_menu');
 
-            @can('plant-R')
+            @can('capexconfig-R')
 
             datatable.KTDatatable({
                 // datasource definition
@@ -288,7 +230,7 @@
                     type: 'remote',
                     source: {
                         read: {
-                            url: '/plant/list',
+                            url: '/capexconfig/list',
                             method: 'GET',
                         }
                     },
@@ -310,49 +252,26 @@
                 // columns definition
                 columns: [
                         {
-                        field: 'plant',
-                        title: 'Plant',
+                        field: 'status',
+                        title: 'Status',
+                        }, 
+                        {
+                        field: 'company',
+                        title: 'Company',
                         }, 
                         {
                         field: 'description',
                         title: 'Description',
-                        }, 
+                        },
                         {
-                        field: 'category',
-                        title: 'Category',
+                        field: 'year',
+                        title: 'Year',
                         },
                         {
                         field: 'type',
                         title: 'Type',
                         },
-                        {
-                        field: 'parenth1',
-                        title: 'Parenth 1',
-                        },
-                        {
-                        field: 'cc1',
-                        title: 'CC1',
-                        },
-                        {
-                        field: 'costcenter',
-                        title: 'Cost Center',
-                        },
-                        {
-                        field: 'sender_bag',
-                        title: 'Sender Bag',
-                        },
-                        {
-                        field: 'parenth2',
-                        title: 'Parenth 2',
-                        },
-                        {
-                        field: 'status',
-                        title: 'Status',
-                        },
-                        {
-                        field: 'cc2',
-                        title: 'CC2',
-                        },
+        
                         {
                         field: 'Actions',
                         title: 'Actions',
@@ -377,10 +296,10 @@
 
             @endcan
 
-            @can('plant-C')
+            @can('capexconfig-C')
             $(document).on('click', '#addMenu', function () {
                 $("#saveMenu").data("id", "");
-                $('#modalMenuTitle').text('Create Plant');
+                $('#modalMenuTitle').text('Create Capex Config');
                 $('#modalMenu').modal('show');
                 $(`.form-control`).removeClass('is-invalid');
                 $(`.invalid-feedback`).remove();
@@ -390,11 +309,11 @@
 
             @endcan
 
-            @can('plant-U')
+            @can('capexconfig-U')
             $(document).on('click', '.edits', function () {
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-                    url: './plant/' + $(this).data('id'), // the url where we want to POST
+                    url: './capexconfig/' + $(this).data('id'), // the url where we want to POST
                     beforeSend: function () {
                         let form = document.forms.formmenus; // <form name="formmenus"> element
                         form.reset();
@@ -429,14 +348,14 @@
                         show_toastr('error', index, value);
                     });
                 }).always(function () {
-                    $('#modalMenuTitle').text('Edit Data Plant');
+                    $('#modalMenuTitle').text('Edit Data Capex Config');
                     $('#modalMenu').modal('show');
                 });
             });
 
             @endcan
 
-            @can(['plant-C', 'plant-U'])
+            @can(['capexconfig-C', 'capexconfig-U'])
             $('#formmenus').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData($("#formmenus")[0]);
@@ -445,9 +364,9 @@
                 let menuID = $("#saveMenu").data("id");
                 
                 if (typeof menuID == "undefined" || menuID == "") {
-                    var url = `./plant`;
+                    var url = `./capexconfig`;
                 } else {
-                    var url = `./plant/${menuID}/update`;
+                    var url = `./capexconfig/${menuID}/update`;
                 }
                 // var url = (menuID != "" || menuID != undefined) ? `./costcenter${menuID}/update` : `./costcenter`;
 
@@ -487,7 +406,7 @@
             });
             @endcan
 
-            @can('costcenter-D')
+            @can('capexconfig-D')
             $(document).on('click', '.deletes', function () {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -504,7 +423,7 @@
                 {
                     $.ajax({
                         type: 'DELETE', // define the type of HTTP verb we want to use (POST for our form)
-                        url: './plant/' + $(this).data('id'), // the url where we want to POST
+                        url: './capexconfig/' + $(this).data('id'), // the url where we want to POST
                     })
                         .done(function (data) {
                             showtoastr('success', data.message);

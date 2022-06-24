@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Plant')
+@section('title', 'ProjectProfile')
 
 @section('css_page')
     <!-- BEGIN VENDOR CSS-->
@@ -45,7 +45,7 @@
                     <!--end::Page Title-->
                     <!--begin::Actions-->
                     <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Plant</h5>
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Project Profile</h5>
                     <!--end::Actions-->
                 </div>
                 <!--end::Info-->
@@ -64,12 +64,12 @@
                 <div class="card card-custom gutter-b">
                     <div class="card-header flex-wrap py-3">
                         <div class="card-title">
-                            <h3 class="card-label">Plant</h3>
+                            <h3 class="card-label">Project Profile</h3>
                                 <span class="d-block text-muted pt-2 font-size-sm"></span></h3>
                         </div>
                         <div class="card-toolbar">
                             <!--begin::Button-->
-                            @can('costcenter-C')
+                            @can('projectprofile-C')
                                 <button id="addMenu" name="addMenu" class="btn btn-primary font-weight-bolder">
                                     <span class="svg-icon svg-icon-md">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
@@ -123,7 +123,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalMenuTitle">Create Master Plant</h5>
+                    <h5 class="modal-title" id="modalMenuTitle">Create Master Project Profile</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i aria-hidden="true" class="ki ki-close"></i>
                     </button>
@@ -147,11 +147,11 @@
                                 </div>
                             </div> --}}
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Plant:</label>
+                                <label class="col-lg-3 col-form-label">Project Profile:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="plant" name="plant"
-                                        placeholder="e.g: Plant 1 Gresik"/>
-                                    <span class="form-text text-muted">Masukkan nama Plant</span>
+                                    <input type="text" class="form-control" id="project_profile" name="project_profile"
+                                        placeholder="e.g: G3"/>
+                                    <span class="form-text text-muted">Masukkan nama Project Profile</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -162,66 +162,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Category:</label>
+                                <label class="col-lg-3 col-form-label">Posting Date:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="category" name="category"/>
-                                    <span class="form-text text-muted">Masukkan Category</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Type:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="type" name="type"/>
-                                    <span class="form-text text-muted">Masukkan Type</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth1:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth1" id="parenth1" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth1</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CC1:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="cc1" name="cc1"/>
-                                    <span class="form-text text-muted">Masukkan CC1</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CostCenter:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="costcenter" name="costcenter"/>
-                                    <span class="form-text text-muted">Masukkan CostCenter</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Sender Bag:</label>
-                                <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="senderbag" name="senderbag"/>
-                                    <span class="form-text text-muted">Masukkan Sender Bag</span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Parenth2:</label>
-                                <div class="col-lg-9">
-                                    <select class="form-control select2" name="parenth2" id="parenth2" style="width: 100%;" required>
-                                        <option class="form-control" value=''>Select Parenth2</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Parenth 1</option>
-                                        <option value="2">Parenth 2</option>
-                                        <option value="3">Parenth 3</option>
-                                    </select>
+                                    <input type="date" class="form-control" id="posting_date" name="posting_date"/>
+                                    <span class="form-text text-muted">Masukkan Posting Date</span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -238,15 +182,24 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">CC2:</label>
+                                <label class="col-lg-3 col-form-label">Company:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="cc2" name="cc2"/>
-                                    <span class="form-text text-muted">Masukkan CC2</span>
+                                    <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Company</option>
+                                        @foreach($company as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                          
-                            
-
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label">Type Inv:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" class="form-control" id="type_inv" name="type_inv"/>
+                                    <span class="form-text text-muted">Masukkan Type Inv</span>
+                                </div>
+                            </div>
+                </div>    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
                                     class="fa fa-times"></i>Cancel
@@ -280,7 +233,7 @@
 
             var datatable = $('#kt_datatable_menu');
 
-            @can('plant-R')
+            @can('projectprofile-R')
 
             datatable.KTDatatable({
                 // datasource definition
@@ -288,7 +241,7 @@
                     type: 'remote',
                     source: {
                         read: {
-                            url: '/plant/list',
+                            url: '/projectprofile/list',
                             method: 'GET',
                         }
                     },
@@ -310,49 +263,30 @@
                 // columns definition
                 columns: [
                         {
-                        field: 'plant',
-                        title: 'Plant',
+                        field: 'project_profile',
+                        title: 'Project Profile',
                         }, 
                         {
                         field: 'description',
                         title: 'Description',
                         }, 
                         {
-                        field: 'category',
-                        title: 'Category',
-                        },
-                        {
-                        field: 'type',
-                        title: 'Type',
-                        },
-                        {
-                        field: 'parenth1',
-                        title: 'Parenth 1',
-                        },
-                        {
-                        field: 'cc1',
-                        title: 'CC1',
-                        },
-                        {
-                        field: 'costcenter',
-                        title: 'Cost Center',
-                        },
-                        {
-                        field: 'sender_bag',
-                        title: 'Sender Bag',
-                        },
-                        {
-                        field: 'parenth2',
-                        title: 'Parenth 2',
+                        field: 'posting_date',
+                        title: 'Posting Date',
                         },
                         {
                         field: 'status',
                         title: 'Status',
                         },
                         {
-                        field: 'cc2',
-                        title: 'CC2',
+                        field: 'company',
+                        title: 'Company',
                         },
+                        {
+                        field: 'type_inv',
+                        title: 'Type Inv',
+                        },
+    
                         {
                         field: 'Actions',
                         title: 'Actions',
@@ -362,10 +296,10 @@
                         overflow: 'visible',
                         template: function (row) {
                             return "<center>" +
-                                    @can('plant-U')
+                                    @can('projectprofile-U')
                                         "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-id=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
                                     @endcan
-                                    @can('plant-D')
+                                    @can('projectprofile-D')
                                         "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-id=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
                                     @endcan
                                         "</center>";
@@ -377,10 +311,10 @@
 
             @endcan
 
-            @can('plant-C')
+            @can('projectprofile-C')
             $(document).on('click', '#addMenu', function () {
                 $("#saveMenu").data("id", "");
-                $('#modalMenuTitle').text('Create Plant');
+                $('#modalMenuTitle').text('Create Project Profile');
                 $('#modalMenu').modal('show');
                 $(`.form-control`).removeClass('is-invalid');
                 $(`.invalid-feedback`).remove();
@@ -390,11 +324,11 @@
 
             @endcan
 
-            @can('plant-U')
+            @can('projectprofile-U')
             $(document).on('click', '.edits', function () {
                 $.ajax({
                     type: 'GET', // define the type of HTTP verb we want to use (POST for our form)
-                    url: './plant/' + $(this).data('id'), // the url where we want to POST
+                    url: './projectprofile/' + $(this).data('id'), // the url where we want to POST
                     beforeSend: function () {
                         let form = document.forms.formmenus; // <form name="formmenus"> element
                         form.reset();
@@ -436,7 +370,7 @@
 
             @endcan
 
-            @can(['plant-C', 'plant-U'])
+            @can(['projectprofile-C', 'projectprofile-U'])
             $('#formmenus').submit(function (e) {
                 e.preventDefault();
                 var formData = new FormData($("#formmenus")[0]);
@@ -445,9 +379,9 @@
                 let menuID = $("#saveMenu").data("id");
                 
                 if (typeof menuID == "undefined" || menuID == "") {
-                    var url = `./plant`;
+                    var url = `./projectprofile`;
                 } else {
-                    var url = `./plant/${menuID}/update`;
+                    var url = `./projectprofile/${menuID}/update`;
                 }
                 // var url = (menuID != "" || menuID != undefined) ? `./costcenter${menuID}/update` : `./costcenter`;
 
@@ -487,7 +421,7 @@
             });
             @endcan
 
-            @can('costcenter-D')
+            @can('projectprofile-D')
             $(document).on('click', '.deletes', function () {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -504,7 +438,7 @@
                 {
                     $.ajax({
                         type: 'DELETE', // define the type of HTTP verb we want to use (POST for our form)
-                        url: './plant/' + $(this).data('id'), // the url where we want to POST
+                        url: './projectprofile/' + $(this).data('id'), // the url where we want to POST
                     })
                         .done(function (data) {
                             showtoastr('success', data.message);
