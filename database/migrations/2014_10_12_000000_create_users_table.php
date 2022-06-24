@@ -40,11 +40,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
 
-            $table->foreign('company')->references('company_code')->on('company');
-            $table->foreign('company_default')->references('company_code')->on('company');
-            $table->foreign('costcenter')->references('id')->on('m_costcenter_structure');
-            $table->foreign('costcenter2')->references('id')->on('m_costcenter_structure');
-            $table->foreign('costcenter_default')->references('id')->on('m_costcenter_structure');
         });
 
         DB::unprepared("            
