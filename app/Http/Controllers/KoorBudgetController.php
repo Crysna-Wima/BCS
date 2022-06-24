@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PlantRequest;
-use App\Models\Plant;
+use App\Http\Requests\KoorBudgetRequest;
+use App\Models\KoorBudget;
+use App\Models\Company;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -11,82 +12,104 @@ use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class PlantController extends Controller
+class KoorBudgetController extends Controller
 {
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        return view('plant', $data);
+        $data['company'] = Company::select('id', 'company', 'description')->get();
+        return view('KoorBudget', $data);
     }
-    
+
     public function datatables(Request $request)
     {
-        $query    = Plant::get();
+        $query    = KoorBudget::get();
         $data     = DataTables::of($query)->make(true);
         $response = $data->getData(true);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
     }
-    
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        $plant = Plant::create([
-            'plant' => $request->plant,
+        $koorbudget = KoorBudget::create([
+            'koor_budget' => $request->koor_budget,
             'description' => $request->description,
-            'category' => $request->category,
-            'type' => $request->type,
+            'costcenter' => $request->costcenter,
+
             // 'created_by' => Auth::user()->username,
             // 'updated_by' => Auth::user()->username,
             'parenth1' => $request->parenth1,
-            'cc1' => $request->cc1,
-            'costcenter' => $request->costcenter,
-            'sender_bag' => $request->senderbag,
-            'parenth2' => $request->parenth2,
             'status' => $request->status,
-            'cc2' => $request->cc2,
+            'company' => $request->company,
+            'capex' => $request->capex,
         ]);
 
-        $response = responseSuccess(trans('message.read-success'),$plant);
-        // return $response;
+        $response = responseSuccess(trans('message.read-success'),$koorbudget);
         return response()->json($response,200);
     }
-    
-    public function show($plant)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($koorbudget)
     {
 
-        $query   = Plant::find($plant);
+        $query   = ProjectProfile::find($koorbudget);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
-    
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        $query   = Plant::find($id);
+        $query   = KoorBudget::find($id);
         $response = responseSuccess(trans("messages.read-success"), $query);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
         //
     }
-    
-    public function update($id, PlantRequest $request)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update($id, KoorBudgetRequest $request)
     {
-          $data = $this->findDataWhere(Plant::class, ['id' => $id]);
+          $data = $this->findDataWhere(KoorBudget::class, ['id' => $id]);
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-                    'plant' => $request->plant,
-                    'description' => $request->description,
-                    'category' => $request->category,
-                    'type' => $request->type,
-                    'parenth1' => $request->parenth1,
-                    'cc1' => $request->cc1,
-                    'costcenter' => $request->costcenter,
-                    'sender_bag' => $request->senderbag,
-                    'parenth2' => $request->parenth2,
-                    'status' => $request->status,
-                    'cc2' => $request->cc2,
+            'koor_budget' => $request->koor_budget,
+            'description' => $request->description,
+            'costcenter' => $request->costcenter,
+
+            // 'created_by' => Auth::user()->username,
+            // 'updated_by' => Auth::user()->username,
+            'parenth1' => $request->parenth1,
+            'status' => $request->status,
+            'company' => $request->company,
+            'capex' => $request->capex,
+                    
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
@@ -99,10 +122,11 @@ class PlantController extends Controller
 
     }
 
+
     public function destroy($id)
     {
 
-        Plant::destroy($id);
+        ProjectProfile::destroy($id);
         $response = responseSuccess(trans('message.delete-success'));
         return response()->json($response,200);
     }
