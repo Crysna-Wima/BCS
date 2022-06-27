@@ -247,16 +247,18 @@
                           
                             
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
                                     class="fa fa-times"></i>Cancel
-                        </button>
-                        @can(['costcenter-C' , 'costcenter-U'])
+                                </button>
+                                @can(['costcenter-C' , 'costcenter-U'])
                             <button type="submit" id="saveMenu" data-id="" class="btn btn-primary font-weight-bold">
                                 <i class="fa fa-save"></i> Save changes
                             </button>
-                        @endcan
-                    </div>
+                                @endcan
+                            </div>
+                        </div>
+                    </div>        
                 </form>
                 <!--end:Form-->
             </div>

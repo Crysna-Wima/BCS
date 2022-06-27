@@ -188,16 +188,17 @@
                                     <span class="form-text text-muted">Masukkan Type</span>
                                 </div>
                             </div>
-                            
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
+                        </div>    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
                                     class="fa fa-times"></i>Cancel
-                        </button>
+                            </button>
                         @can(['capexconfig-C' , 'capexconfig-U'])
                             <button type="submit" id="saveMenu" data-id="" class="btn btn-primary font-weight-bold">
                                 <i class="fa fa-save"></i> Save changes
                             </button>
                         @endcan
+                        </div>
                     </div>
                 </form>
                 <!--end:Form-->
