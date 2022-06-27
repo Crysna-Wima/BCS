@@ -78,6 +78,59 @@ class PermissionsTableSeeder extends Seeder
             array('id' => 49, 'name' => 'costcenter-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 10),
             array('id' => 50, 'name' => 'costcenter-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 10),
 
+            array('id' => 51, 'name' => 'glaccount-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 11),
+            array('id' => 52, 'name' => 'glaccount-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 11),
+            array('id' => 53, 'name' => 'glaccount-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 11),
+            array('id' => 54, 'name' => 'glaccount-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 11),
+            array('id' => 55, 'name' => 'glaccount-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 11),
+
+            array('id' => 56, 'name' => 'plant-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 12),
+            array('id' => 57, 'name' => 'plant-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 12),
+            array('id' => 58, 'name' => 'plant-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 12),
+            array('id' => 59, 'name' => 'plant-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 12),
+            array('id' => 60, 'name' => 'plant-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 12),
+
+            array('id' => 61, 'name' => 'functional-location-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 13),
+            array('id' => 62, 'name' => 'functional-location-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 13),
+            array('id' => 63, 'name' => 'functional-location-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 13),
+            array('id' => 64, 'name' => 'functional-location-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 13),
+            array('id' => 65, 'name' => 'functional-location-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 13),
+
+            array('id' => 66, 'name' => 'roleCapex-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 14),
+            array('id' => 67, 'name' => 'roleCapex-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 14),
+            array('id' => 68, 'name' => 'roleCapex-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 14),
+            array('id' => 69, 'name' => 'roleCapex-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 14),
+            array('id' => 70, 'name' => 'roleCapex-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 14),
+
+            array('id' => 71, 'name' => 'investType-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 15),
+            array('id' => 72, 'name' => 'investType-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 15),
+            array('id' => 73, 'name' => 'investType-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 15),
+            array('id' => 74, 'name' => 'investType-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 15),
+            array('id' => 75, 'name' => 'investType-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 15),
+
+            array('id' => 76, 'name' => 'projectprofile-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 16),
+            array('id' => 77, 'name' => 'projectprofile-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 16),
+            array('id' => 78, 'name' => 'projectprofile-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 16),
+            array('id' => 79, 'name' => 'projectprofile-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 16),
+            array('id' => 80, 'name' => 'projectprofile-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 16),
+
+            array('id' => 81, 'name' => 'capexconfig-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 17),
+            array('id' => 82, 'name' => 'capexconfig-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 17),
+            array('id' => 83, 'name' => 'capexconfig-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 17),
+            array('id' => 84, 'name' => 'capexconfig-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 17),
+            array('id' => 85, 'name' => 'capexconfig-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 17),
+
+            array('id' => 86, 'name' => 'koorbudget-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 18),
+            array('id' => 87, 'name' => 'koorbudget-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 18),
+            array('id' => 88, 'name' => 'koorbudget-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 18),
+            array('id' => 89, 'name' => 'koorbudget-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 18),
+            array('id' => 90, 'name' => 'koorbudget-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 18),
+
+            array('id' => 91, 'name' => 'capex-C', 'guard_name' => 'web', 'action_id' => 'C', 'menu_id' => 19),
+            array('id' => 92, 'name' => 'capex-R', 'guard_name' => 'web', 'action_id' => 'R', 'menu_id' => 19),
+            array('id' => 93, 'name' => 'capex-U', 'guard_name' => 'web', 'action_id' => 'U', 'menu_id' => 19),
+            array('id' => 94, 'name' => 'capex-D', 'guard_name' => 'web', 'action_id' => 'D', 'menu_id' => 19),
+            array('id' => 95, 'name' => 'capex-A', 'guard_name' => 'web', 'action_id' => 'A', 'menu_id' => 19),
         ];
 
         foreach ($permissions as $k_data => $v_data){

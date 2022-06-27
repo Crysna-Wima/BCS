@@ -107,6 +107,69 @@ class RoutesTableSeeder extends Seeder
             ['permission'=>'usersetting-A','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/usersetting/simulate/{id}','route'=>'WEBSETTING\UserController@simulate','guard'=>'web'],
             ['permission'=>'usersetting-A','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/usersetting/leaveSimulate','route'=>'WEBSETTING\UserController@leaveSimulate','guard'=>'web'],
 
+            // Gl Account
+            ['permission'=>'glaccount-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/glaccount','route'=>'GLAccountController@index','guard'=>'web'],
+            ['permission'=>'glaccount-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/glaccount/list','route'=>'GLAccountController@datatables','guard'=>'web'],
+            ['permission'=>'glaccount-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/glaccount','route'=>'GLAccountController@store','guard'=>'web'],
+            ['permission'=>'glaccount-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/glaccount/{id}','route'=>'GLAccountController@show','guard'=>'web'],
+            ['permission'=>'glaccount-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/glaccount/{id}/update','route'=>'GLAccountController@update','guard'=>'web'],
+            ['permission'=>'glaccount-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/glaccount/{id}','route'=>'GLAccountController@destroy','guard'=>'web'],
+
+            // Plant
+            ['permission'=>'plant-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/plant','route'=>'PlantController@index','guard'=>'web'],
+            ['permission'=>'plant-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/plant/list','route'=>'PlantController@datatables','guard'=>'web'],
+            ['permission'=>'plant-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/plant','route'=>'PlantController@store','guard'=>'web'],
+            ['permission'=>'plant-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/plant/{id}','route'=>'PlantController@show','guard'=>'web'],
+            ['permission'=>'plant-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/plant/{id}/update','route'=>'PlantController@update','guard'=>'web'],
+            ['permission'=>'plant-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/plant/{id}','route'=>'PlantController@destroy','guard'=>'web'],
+
+            // functional location
+            ['permission'=>'functional-location-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/functional-location','route'=>'FunctionalLocationController@index','guard'=>'web'],
+            ['permission'=>'functional-location-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/functional-location/list','route'=>'FunctionalLocationController@datatables','guard'=>'web'],
+            ['permission'=>'functional-location-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/functional-location','route'=>'FunctionalLocationController@store','guard'=>'web'],
+            ['permission'=>'functional-location-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/functional-location/{id}','route'=>'FunctionalLocationController@show','guard'=>'web'],
+            ['permission'=>'functional-location-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/functional-location/{id}/update','route'=>'FunctionalLocationController@update','guard'=>'web'],
+            ['permission'=>'functional-location-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/functional-location/{id}','route'=>'FunctionalLocationController@destroy','guard'=>'web'],
+
+            // role capex
+            ['permission'=>'rolecapex-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/rolecapex','route'=>'RoleCapexController@index','guard'=>'web'],
+            ['permission'=>'rolecapex-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/rolecapex/list','route'=>'RoleCapexController@datatables','guard'=>'web'],
+            ['permission'=>'rolecapex-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/rolecapex','route'=>'RoleCapexController@store','guard'=>'web'],
+            ['permission'=>'rolecapex-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/rolecapex/{id}','route'=>'RoleCapexController@show','guard'=>'web'],
+            ['permission'=>'rolecapex-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/rolecapex/{id}/update','route'=>'RoleCapexController@update','guard'=>'web'],
+            ['permission'=>'rolecapex-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/rolecapex/{id}','route'=>'RoleCapexController@destroy','guard'=>'web'],
+
+            // invest type
+            ['permission'=>'investType-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/investType','route'=>'InvestTypeController@index','guard'=>'web'],
+            ['permission'=>'investType-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/investType/list','route'=>'InvestTypeController@datatables','guard'=>'web'],
+            ['permission'=>'investType-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/investType','route'=>'InvestTypeController@store','guard'=>'web'],
+            ['permission'=>'investType-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/investType/{id}','route'=>'InvestTypeController@show','guard'=>'web'],
+            ['permission'=>'investType-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/investType/{id}/update','route'=>'InvestTypeController@update','guard'=>'web'],
+            ['permission'=>'investType-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/investType/{id}','route'=>'InvestTypeController@destroy','guard'=>'web'],
+
+            // project profile
+            ['permission'=>'projectprofile-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/projectprofile','route'=>'ProjectProfileController@index','guard'=>'web'],
+            ['permission'=>'projectprofile-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/projectprofile/list','route'=>'ProjectProfileController@datatables','guard'=>'web'],
+            ['permission'=>'projectprofile-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/projectprofile','route'=>'ProjectProfileController@store','guard'=>'web'],
+            ['permission'=>'projectprofile-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/projectprofile/{id}','route'=>'ProjectProfileController@show','guard'=>'web'],
+            ['permission'=>'projectprofile-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/projectprofile/{id}/update','route'=>'ProjectProfileController@update','guard'=>'web'],
+            ['permission'=>'projectprofile-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/projectprofile/{id}','route'=>'ProjectProfileController@destroy','guard'=>'web'],
+
+            // capex config
+            ['permission'=>'capexconfig-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/capexconfig','route'=>'CapexConfigController@index','guard'=>'web'],
+            ['permission'=>'capexconfig-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/capexconfig/list','route'=>'CapexConfigController@datatables','guard'=>'web'],
+            ['permission'=>'capexconfig-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/capexconfig','route'=>'CapexConfigController@store','guard'=>'web'],
+            ['permission'=>'capexconfig-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/capexconfig/{id}','route'=>'CapexConfigController@show','guard'=>'web'],
+            ['permission'=>'capexconfig-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/capexconfig/{id}/update','route'=>'CapexConfigController@update','guard'=>'web'],
+            ['permission'=>'capexconfig-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/capexconfig/{id}','route'=>'CapexConfigController@destroy','guard'=>'web'],
+
+            // koor budget
+            ['permission'=>'koorbudget-R','middleware'=> 'lang,authz','type'=>'view','method'=>'GET','url'=>'/koorbudget','route'=>'KoorBudgetController@index','guard'=>'web'],
+            ['permission'=>'koorbudget-R','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/koorbudget/list','route'=>'KoorBudgetController@datatables','guard'=>'web'],
+            ['permission'=>'koorbudget-C','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/koorbudget','route'=>'KoorBudgetController@store','guard'=>'web'],
+            ['permission'=>'koorbudget-U','middleware'=> 'lang,authz','type'=>'data','method'=>'GET','url'=>'/koorbudget/{id}','route'=>'KoorBudgetController@show','guard'=>'web'],
+            ['permission'=>'koorbudget-U','middleware'=> 'lang,authz','type'=>'data','method'=>'POST','url'=>'/koorbudget/{id}/update','route'=>'KoorBudgetController@update','guard'=>'web'],
+            ['permission'=>'koorbudget-D','middleware'=> 'lang,authz','type'=>'data','method'=>'DELETE','url'=>'/koorbudget/{id}','route'=>'KoorBudgetController@destroy','guard'=>'web'],
         ];
 
         foreach($data as $k_data => $v_data){
