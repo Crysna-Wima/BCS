@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KoorBudgetRequest;
-use App\Models\KoorBudget;
-use App\Models\Company;
+use App\Http\Requests\FunctionalLocationRequest;
 use App\Models\CostcenterStructure;
+use App\Models\Company;
+use App\Models\FunctionalLocation;
+use App\Models\Plant;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -13,21 +14,22 @@ use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class KoorBudgetController extends Controller
+class FunctionalLocationController extends Controller
 {
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        $data['costcenter'] = CostcenterStructure::select('id', 'directorat')->get();
         $data['company'] = Company::select('id', 'company', 'description')->get();
-        return view('KoorBudget', $data);
+        $data['costcenter'] = CostcenterStructure::select('id', 'directorat')->get();
+        $data['plant'] = Plant::select('id', 'plant')->get();
+        return view('functionalLocation', $data);
     }
 
     public function datatables(Request $request)
     {
-        $query    = KoorBudget::get();
+        $query    = FunctionalLocation::get();
         $data     = DataTables::of($query)->make(true);
         $response = $data->getData(true);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
@@ -41,20 +43,18 @@ class KoorBudgetController extends Controller
      */
     public function store(Request $request)
     {
-        $koorbudget = KoorBudget::create([
-            'koor_budget' => $request->koor_budget,
+        $functionallocation = FunctionalLocation::create([
+            'functional_location' => $request->functional_location,
             'description' => $request->description,
             'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
+            'area' => $request->area,
+            'company' => $request->company,
+            'plant' => $request->plant,
             'parenth1' => $request->parenth1,
             'status' => $request->status,
-            'company' => $request->company,
-            'capex' => $request->capex,
         ]);
 
-        $response = responseSuccess(trans('message.read-success'),$koorbudget);
+        $response = responseSuccess(trans('message.read-success'),$functionallocation);
         return response()->json($response,200);
     }
 
@@ -64,10 +64,10 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($koorbudget)
+    public function show($functionallocation)
     {
 
-        $query   = KoorBudget::find($koorbudget);
+        $query   = FunctionalLocation::find($functionallocation);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
@@ -80,7 +80,7 @@ class KoorBudgetController extends Controller
      */
     public function edit($id)
     {
-        $query   = KoorBudget::find($id);
+        $query   = FunctionalLocation::find($id);
         $response = responseSuccess(trans("messages.read-success"), $query);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
         //
@@ -93,25 +93,22 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($id, FunctionalLocationRequest $request)
     {
-          $data = $this->findDataWhere(KoorBudget::class, ['id' => $id]);
+          $data = $this->findDataWhere(FunctionalLocation::class, ['id' => $id]);
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-            'koor_budget' => $request->koor_budget,
-            'description' => $request->description,
-            'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'status' => $request->status,
-            'company' => $request->company,
-            'capex' => $request->capex,
-                    
+                    'functional_location' => $request->functional_location,
+                    'description' => $request->description,
+                    'costcenter' => $request->costcenter,
+                    'area' => $request->area,
+                    'company' => $request->company,
+                    'plant' => $request->plant,
+                    'parenth1' => $request->parenth1,
+                    'status' => $request->status,
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
@@ -128,7 +125,7 @@ class KoorBudgetController extends Controller
     public function destroy($id)
     {
 
-        ProjectProfile::destroy($id);
+        FunctionalLocation::destroy($id);
         $response = responseSuccess(trans('message.delete-success'));
         return response()->json($response,200);
     }

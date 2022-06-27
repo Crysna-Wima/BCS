@@ -164,8 +164,12 @@
                             <div class="form-group row">
                                 <label class="col-lg-3 col-form-label">Cost Center:</label>
                                 <div class="col-lg-9">
-                                    <input type="text" class="form-control" id="costcenter" name="costcenter"/>
-                                    <span class="form-text text-muted">Masukkan Cost Center</span>
+                                    <select class="form-control select2" name="costcenter" id="costcenter" style="width: 100%;" required>
+                                        <option class="form-control" value=''>Select Cost Center</option>
+                                        @foreach($costcenter as $code)
+                                            <option class="form-control" value='{{$code["id"]}}'> {{$code['id']}} - {{$code['directorat']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -200,12 +204,9 @@
                                 <div class="col-lg-9">
                                     <select class="form-control select2" name="company" id="company" style="width: 100%;" required>
                                         <option class="form-control" value=''>Select Company</option>
-                                        {{-- @foreach($parent_company_code as $code)
-                                                <option class="form-control" value='{{$code["company_code"]}}'> {{$code['company_code']}} - {{$code['company_name']}}</option>
-                                        @endforeach --}}
-                                        <option value="1">Company 1</option>
-                                        <option value="2">Company 2</option>
-                                        <option value="3">Company 3</option>
+                                        @foreach($company as $code)
+                                                <option class="form-control" value='{{$code["company"]}}'> {{$code['company']}} - {{$code['description']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -216,7 +217,7 @@
                                     <span class="form-text text-muted">Masukkan Capex</span>
                                 </div>
                             </div>
-
+                        </div>
 
                             <div class="modal-footer">
                                 <button   button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal"><i
@@ -283,49 +284,34 @@
                 // columns definition
                 columns: [
                         {
-                        field: 'plant',
-                        title: 'Plant',
+                        field: 'koor_budget',
+                        title: 'Koor Budget',
                         }, 
                         {
                         field: 'description',
                         title: 'Description',
                         }, 
                         {
-                        field: 'category',
-                        title: 'Category',
-                        },
-                        {
-                        field: 'type',
-                        title: 'Type',
+                        field: 'costcenter',
+                        title: 'Costcenter',
                         },
                         {
                         field: 'parenth1',
                         title: 'Parenth 1',
                         },
                         {
-                        field: 'cc1',
-                        title: 'CC1',
-                        },
-                        {
-                        field: 'costcenter',
-                        title: 'Cost Center',
-                        },
-                        {
-                        field: 'sender_bag',
-                        title: 'Sender Bag',
-                        },
-                        {
-                        field: 'parenth2',
-                        title: 'Parenth 2',
-                        },
-                        {
                         field: 'status',
                         title: 'Status',
                         },
                         {
-                        field: 'cc2',
-                        title: 'CC2',
+                        field: 'company',
+                        title: 'Company',
                         },
+                        {
+                        field: 'capex',
+                        title: 'Capex',
+                        },
+
                         {
                         field: 'Actions',
                         title: 'Actions',
@@ -335,10 +321,10 @@
                         overflow: 'visible',
                         template: function (row) {
                             return "<center>" +
-                                    @can('plant-U')
+                                    @can('koorbudget-U')
                                         "<button type='button' class='edits btn btn-sm btn-icon btn-outline-warning ' title='Edit' data-toggle='tooltip' data-id=" + row.id + " ><i class='fa fa-edit'></i> </button>  " +
                                     @endcan
-                                    @can('plant-D')
+                                    @can('koorbudget-D')
                                         "<button type='button' class='deletes btn-sm btn btn-icon btn-outline-danger' title='Delete' data-toggle='tooltip' alt='' data-id=" + row.id+ " ><i class='fa fa-trash'></i></button>  " +
                                     @endcan
                                         "</center>";
@@ -353,7 +339,7 @@
             @can('koorbudget-C')
             $(document).on('click', '#addMenu', function () {
                 $("#saveMenu").data("id", "");
-                $('#modalMenuTitle').text('Create Plant');
+                $('#modalMenuTitle').text('Create Koor Budget');
                 $('#modalMenu').modal('show');
                 $(`.form-control`).removeClass('is-invalid');
                 $(`.invalid-feedback`).remove();

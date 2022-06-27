@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KoorBudgetRequest;
-use App\Models\KoorBudget;
-use App\Models\Company;
-use App\Models\CostcenterStructure;
+use App\Http\Requests\InvestTypeRequest;
+use App\Models\InvestType;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -13,21 +11,19 @@ use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class KoorBudgetController extends Controller
+class InvestTypeController extends Controller
 {
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        $data['costcenter'] = CostcenterStructure::select('id', 'directorat')->get();
-        $data['company'] = Company::select('id', 'company', 'description')->get();
-        return view('KoorBudget', $data);
+        return view('investType', $data);
     }
 
     public function datatables(Request $request)
     {
-        $query    = KoorBudget::get();
+        $query    = InvestType::get();
         $data     = DataTables::of($query)->make(true);
         $response = $data->getData(true);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
@@ -41,20 +37,14 @@ class KoorBudgetController extends Controller
      */
     public function store(Request $request)
     {
-        $koorbudget = KoorBudget::create([
-            'koor_budget' => $request->koor_budget,
+        $investType = InvestType::create([
+            'tipe_investasi' => $request->tipe_investasi,
             'description' => $request->description,
-            'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'status' => $request->status,
-            'company' => $request->company,
-            'capex' => $request->capex,
+            'type_investasi_act' => $request->type_investasi_act,
+            'capex_type' => $request->capex_type,
         ]);
 
-        $response = responseSuccess(trans('message.read-success'),$koorbudget);
+        $response = responseSuccess(trans('message.read-success'),$investType);
         return response()->json($response,200);
     }
 
@@ -64,10 +54,10 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($koorbudget)
+    public function show($investType)
     {
 
-        $query   = KoorBudget::find($koorbudget);
+        $query   = InvestType::find($investType);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
@@ -80,7 +70,7 @@ class KoorBudgetController extends Controller
      */
     public function edit($id)
     {
-        $query   = KoorBudget::find($id);
+        $query   = InvestType::find($id);
         $response = responseSuccess(trans("messages.read-success"), $query);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
         //
@@ -93,25 +83,18 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($id, InvestTypeRequest $request)
     {
-          $data = $this->findDataWhere(KoorBudget::class, ['id' => $id]);
+          $data = $this->findDataWhere(InvestType::class, ['id' => $id]);
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-            'koor_budget' => $request->koor_budget,
-            'description' => $request->description,
-            'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'status' => $request->status,
-            'company' => $request->company,
-            'capex' => $request->capex,
-                    
+                    'tipe_investasi' => $request->tipe_investasi,
+                    'description' => $request->description,
+                    'type_investasi_act' => $request->type_investasi_act,
+                    'capex_type' => $request->capex_type,
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
@@ -128,7 +111,7 @@ class KoorBudgetController extends Controller
     public function destroy($id)
     {
 
-        ProjectProfile::destroy($id);
+        InvestType::destroy($id);
         $response = responseSuccess(trans('message.delete-success'));
         return response()->json($response,200);
     }

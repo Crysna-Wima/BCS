@@ -340,17 +340,12 @@
                     console.log(res.success);
                     if (res.success) {
                         showtoastr('success', res.message);
-                        $(form.elements.plant).val(res.data.plant).trigger('change');
+                        $(form.elements.project_profile).val(res.data.project_profile).trigger('change');
                         $(form.elements.description).val(res.data.description).trigger('change');
-                        $(form.elements.category).val(res.data.category);
-                        $(form.elements.type).val(res.data.type).trigger('change');
-                        $(form.elements.parenth1).val(res.data.parenth1).trigger('change');
-                        $(form.elements.cc1).val(res.data.cc1);
-                        $(form.elements.costcenter).val(res.data.costcenter).trigger('change');
-                        $(form.elements.senderbag).val(res.data.sender_bag);
-                        $(form.elements.parenth2).val(res.data.parenth2);
-                        $(form.elements.status).val(res.data.status);
-                        $(form.elements.cc2).val(res.data.cc2);
+                        $(form.elements.posting_date).val(res.data.posting_date);
+                        $(form.elements.status).val(res.data.status).trigger('change');
+                        $(form.elements.company).val(res.data.company).trigger('change');
+                        $(form.elements.type_inv).val(res.data.type_inv);
                         // $('#').val(res.data.company_code);
                         // $('#company_name').val(res.data.company_name);
                         // var index = $('#parent_company_code').get(res.data.company_code).selectedIndex;
@@ -363,7 +358,7 @@
                         show_toastr('error', index, value);
                     });
                 }).always(function () {
-                    $('#modalMenuTitle').text('Edit Data Plant');
+                    $('#modalMenuTitle').text('Edit Data Project Profile');
                     $('#modalMenu').modal('show');
                 });
             });

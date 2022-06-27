@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KoorBudgetRequest;
-use App\Models\KoorBudget;
+use App\Http\Requests\RoleCapexRequest;
+use App\Models\RoleCapex;
 use App\Models\Company;
-use App\Models\CostcenterStructure;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -13,21 +12,20 @@ use App\Models\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class KoorBudgetController extends Controller
+class RoleCapexController extends Controller
 {
     public function index()
     {
         // $query = new Company();
         $data['menus'] = $this->getDashboardMenu();
         $data['menu']  = Menu::select('id', 'name')->get();
-        $data['costcenter'] = CostcenterStructure::select('id', 'directorat')->get();
         $data['company'] = Company::select('id', 'company', 'description')->get();
-        return view('KoorBudget', $data);
+        return view('roleCapex', $data);
     }
 
     public function datatables(Request $request)
     {
-        $query    = KoorBudget::get();
+        $query    = RoleCapex::get();
         $data     = DataTables::of($query)->make(true);
         $response = $data->getData(true);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
@@ -41,20 +39,16 @@ class KoorBudgetController extends Controller
      */
     public function store(Request $request)
     {
-        $koorbudget = KoorBudget::create([
-            'koor_budget' => $request->koor_budget,
-            'description' => $request->description,
-            'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'status' => $request->status,
+        $costcenter = RoleCapex::create([
+            'nopeg' => $request->nopeg,
+            'acc' => $request->acc,
             'company' => $request->company,
-            'capex' => $request->capex,
+            'ka' => $request->ka,
+            'year' => $request->year,
+            'status' => $request->status,
         ]);
 
-        $response = responseSuccess(trans('message.read-success'),$koorbudget);
+        $response = responseSuccess(trans('message.read-success'),$costcenter);
         return response()->json($response,200);
     }
 
@@ -64,10 +58,10 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($koorbudget)
+    public function show($roleCapex)
     {
 
-        $query   = KoorBudget::find($koorbudget);
+        $query   = RoleCapex::find($roleCapex);
         $response = responseSuccess(trans('message.read-success'),$query);
         return response()->json($response,200);
     }
@@ -80,7 +74,7 @@ class KoorBudgetController extends Controller
      */
     public function edit($id)
     {
-        $query   = KoorBudget::find($id);
+        $query   = RoleCapex::find($id);
         $response = responseSuccess(trans("messages.read-success"), $query);
         return response()->json($response, 200, [], JSON_PRETTY_PRINT);
         //
@@ -93,25 +87,20 @@ class KoorBudgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
+    public function update($id, RoleCapexRequest $request)
     {
-          $data = $this->findDataWhere(KoorBudget::class, ['id' => $id]);
+          $data = $this->findDataWhere(RoleCapex::class, ['id' => $id]);
 
         //   dd($data);exit();
           DB::beginTransaction();
           try {
               $data->update([
-            'koor_budget' => $request->koor_budget,
-            'description' => $request->description,
-            'costcenter' => $request->costcenter,
-
-            // 'created_by' => Auth::user()->username,
-            // 'updated_by' => Auth::user()->username,
-            'parenth1' => $request->parenth1,
-            'status' => $request->status,
-            'company' => $request->company,
-            'capex' => $request->capex,
-                    
+                    'nopeg' => $request->nopeg,
+                    'acc' => $request->acc,
+                    'company' => $request->company,
+                    'ka' => $request->ka,
+                    'status' => $request->status,
+                    'year' => $request->year,
               ]);
               DB::commit();
               $response = responseSuccess(trans("messages.update-success"), $data);
@@ -128,7 +117,7 @@ class KoorBudgetController extends Controller
     public function destroy($id)
     {
 
-        ProjectProfile::destroy($id);
+        RoleCapex::destroy($id);
         $response = responseSuccess(trans('message.delete-success'));
         return response()->json($response,200);
     }
